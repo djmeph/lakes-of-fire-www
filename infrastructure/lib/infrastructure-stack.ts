@@ -1,18 +1,18 @@
-import { App, Fn, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
+import { Fn, RemovalPolicy, Stack } from 'aws-cdk-lib';
 import { Certificate, ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import { OriginAccessIdentity } from 'aws-cdk-lib/aws-cloudfront';
-import { InstanceType, IVpc, NatProvider, Peer, Port, SecurityGroup, SubnetType, Vpc } from 'aws-cdk-lib/aws-ec2';
+import { IVpc, Peer, Port, SecurityGroup, SubnetType, Vpc } from 'aws-cdk-lib/aws-ec2';
 import { Cluster, ContainerImage, LogDrivers } from 'aws-cdk-lib/aws-ecs';
 import { ApplicationLoadBalancedFargateService } from 'aws-cdk-lib/aws-ecs-patterns';
 import { AuroraMysqlEngineVersion, DatabaseClusterEngine, ServerlessCluster } from 'aws-cdk-lib/aws-rds';
 import { HostedZone, IHostedZone } from 'aws-cdk-lib/aws-route53';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { ISecret, Secret } from 'aws-cdk-lib/aws-secretsmanager';
-import { Construct } from 'constructs';
 import { InfrastructureStackProps } from './infrastructure-interface';
-import * as path from 'path';
 import { LogGroup } from 'aws-cdk-lib/aws-logs';
 import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { Construct } from 'constructs';
+import * as path from 'path';
 
 const cidrBlocks = {
   vpcCidr: '10.12.0.0/16',

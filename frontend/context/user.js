@@ -8,9 +8,7 @@ const UserProvider = ({ children }) => {
   const [id, setId] = useState();
   const [loggingIn, setLoggingIn] = useState();
 
-  //...
-
-  async function doRegister(values) {
+  const doRegister = async (values) => {
     var ret = ['niente'];
     try {
       const resp = await linstance.post('/api/auth/register', values);
@@ -20,7 +18,7 @@ const UserProvider = ({ children }) => {
     }
   }
 
-  async function checkLogin() {
+  const checkLogin = async () => {
     try {
       const resp = await linstance.get('/api/auth/user');
       setUser(resp.data.user);
@@ -32,7 +30,7 @@ const UserProvider = ({ children }) => {
     }
   }
 
-  async function doLogin(values) {
+  const doLogin = async (values) => {
     try {
       const resp = await linstance.post('/api/auth/login', values);
       return resp.data;
