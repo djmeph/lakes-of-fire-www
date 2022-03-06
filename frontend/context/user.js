@@ -3,17 +3,12 @@ export const UserContext = createContext(null);
 import { linstance } from '../lib/api';
 
 const UserProvider = ({ children }) => {
-  const [dummy, setDummy] = useState();
   const [user, setUser] = useState();
   const [email, setEmail] = useState();
   const [id, setId] = useState();
-  const [loggedIn, setLoggingIn] = useState();
+  const [loggingIn, setLoggingIn] = useState();
 
   //...
-
-  async function dummyfunction() {
-    return "dummy function invoked";
-  }
 
   async function doRegister(values) {
     var ret = ['niente'];
@@ -46,20 +41,30 @@ const UserProvider = ({ children }) => {
     }
   }
 
+  const doLogout = async () => {
+    const resp = await linstance.post('/api/auth/logout', {
+      method: 'POST',
+    });
+    if (resp.data.message == 'success') {
+      setUser('');
+      setEmail('');
+      setId('');
+    }
+  };
+
   const useract = {
-    dummy: dummy,
-    setDummy: setDummy,
-    dummyfunction: dummyfunction,
     doRegister: doRegister,
     user: user,
     setUser: setUser,
     email: email,
     setEmail: setEmail,
     id: id,
+    setLoggingIn: setLoggingIn,
+    loggingIn: loggingIn,
     setId: setId,
     checkLogin: checkLogin,
     doLogin: doLogin,
-    setLoggingIn: setLoggingIn,
+    doLogout: doLogout
   };
 
   return (
