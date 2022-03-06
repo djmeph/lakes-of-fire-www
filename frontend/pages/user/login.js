@@ -8,12 +8,15 @@ import LoginForm from '../../components/LoginForm';
 function Login() {
   const { user, jwt, setUser, checkLogin } = useContext(UserContext);
 
-  useEffect(async () => {
-    const res = await checkLogin();
-    console.log(res.status)
-    if (res.status === 200) {
-      setUser(res.data);
+  useEffect(() => {
+    async function fetchData() {
+      const res = await checkLogin();
+      console.log(res.status)
+      if (res.status === 200) {
+        setUser(res.data);
+      }
     }
+    fetchData();
   }, []);
   if (user) {
     useRouter.push('/user');

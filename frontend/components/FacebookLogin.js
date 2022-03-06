@@ -5,7 +5,7 @@ const FacebookLogin = () => {
     <button
       className="btn btn-outline-dark"
       onClick={() =>
-        (window.location = 'http://localhost:1337/api/connect/facebook')
+        (window.location = `${process.env.NEXT_PUBLIC_API_URL}/api/connect/facebook`)
       }
     >
       <svg

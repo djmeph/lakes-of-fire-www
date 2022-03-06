@@ -4,20 +4,23 @@ import { useEffect, useContext, useState } from 'react';
 
 import { UserContext } from '../../context/user';
 
-export default function facebookCallback() {
+const FacebookCallback = () => {
   const [error, setError] = useState();
   const router = useRouter();
   const { doFacebookCallback, user, setUser } = useContext(UserContext);
-  useEffect(async () => {
-    if (router.query.access_token) {
-      const res = await doFacebookCallback({
-        access_token: router.query.access_token,
-      });
-      if (res[0] === 'alert') {
-        setError(res[1]);
+  useEffect(() => {
+    async function fetchData() {
+      if (router.query.access_token) {
+        const res = await doFacebookCallback({
+          access_token: router.query.access_token,
+        });
+        if (res[0] === 'alert') {
+          setError(res[1]);
+        }
+        setUser(res[1].username);
       }
-      setUser(res[1].username);
     }
+    fetchData();
   }, [router]);
   if (user) {
     router.push('/user');
@@ -28,3 +31,5 @@ export default function facebookCallback() {
 
   return <p>Logging in with Facebook</p>;
 }
+
+export default FacebookCallback;

@@ -12,10 +12,13 @@ export default function Home() {
   const { user, email, id, checkLogin } = useContext(UserContext);
   const { query } = useRouter();
   const error = query.msg;
-  useEffect(async () => {
-    const res = await checkLogin();
-    if (res.status === 200) {
+  useEffect(() => {
+    async function fetchData() {
+      const res = await checkLogin();
+      if (res.status === 200) {
+      }
     }
+    fetchData();
   }, []);
 
   return (

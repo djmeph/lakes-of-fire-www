@@ -6,10 +6,13 @@ import { UserContext } from '../../context/user';
 
 function Register() {
   const { user, checkLogin } = useContext(UserContext);
-  useEffect(async () => {
-    const res = await checkLogin();
-    if (res.status === 200) {
+  useEffect(() => {
+    async function fetchData() {
+      const res = await checkLogin();
+      if (res.status === 200) {
+      }
     }
+    fetchData();
   }, []);
   if (user) {
     useRouter.push('/user');

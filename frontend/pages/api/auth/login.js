@@ -1,6 +1,6 @@
 import axios from '../../../lib/api';
 import cookie from 'cookie';
-export default async (req, res) => {
+const Login = async (req, res) => {
   if (req.method === 'POST') {
     var resp = {};
     resp = await axios
@@ -38,3 +38,5 @@ export default async (req, res) => {
       });
   }
 };
+
+export default Login;

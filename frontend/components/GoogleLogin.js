@@ -5,7 +5,7 @@ const GoogleLogin = () => {
     <button
       className="btn btn-outline-dark"
       onClick={() =>
-        (window.location = 'http://localhost:1337/api/connect/google')
+        (window.location = `${process.env.NEXT_PUBLIC_API_URL}/api/connect/google`)
       }
     >
       <svg
