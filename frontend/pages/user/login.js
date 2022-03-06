@@ -10,6 +10,7 @@ function Login() {
 
   useEffect(async () => {
     const res = await checkLogin();
+    console.log(res.status)
     if (res.status === 200) {
       setUser(res.data);
     }

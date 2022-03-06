@@ -50,6 +50,24 @@ const UserProvider = ({ children }) => {
     }
   };
 
+  const doGoogleCallback = async (values) => {
+    try {
+      const resp = await linstance.post('/api/auth/google/callback', values);
+      return ['OK', resp.data.message];
+    } catch (error) {
+      return ['alert', error.response.data.message];
+    }
+  }
+
+  const doFacebookCallback = async (values) => {
+    try {
+      const resp = await linstance.post('/api/auth/facebook/callback', values);
+      return ['OK', resp.data.message];
+    } catch (error) {
+      return ['alert', error.response.data.message];
+    }
+  }
+
   const useract = {
     doRegister: doRegister,
     user: user,
@@ -62,7 +80,9 @@ const UserProvider = ({ children }) => {
     setId: setId,
     checkLogin: checkLogin,
     doLogin: doLogin,
-    doLogout: doLogout
+    doLogout: doLogout,
+    doGoogleCallback: doGoogleCallback,
+    doFacebookCallback: doFacebookCallback
   };
 
   return (
