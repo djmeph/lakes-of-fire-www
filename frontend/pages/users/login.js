@@ -1,21 +1,23 @@
 import React, { useEffect, useContext } from 'react';
 
 import useRouter from 'next/router';
-import RegisterForm from '../../components/RegisterForm';
 import { UserContext } from '../../context/user';
 
-function Register() {
-  const { user, checkLogin } = useContext(UserContext);
+import LoginForm from '../../components/LoginForm';
+
+function Login() {
+  const { user, jwt, setUser, checkLogin } = useContext(UserContext);
+
   useEffect(async () => {
     const res = await checkLogin();
     if (res.status === 200) {
+      setUser(res.data);
     }
   }, []);
   if (user) {
     useRouter.push('/user');
   }
-
-  return <RegisterForm />;
+  return <LoginForm />;
 }
 
-export default Register;
+export default Login;
